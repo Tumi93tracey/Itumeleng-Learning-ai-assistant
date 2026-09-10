@@ -5,6 +5,7 @@ import {
   BookOpen,
   Calendar,
   Clock,
+  GraduationCap,
   Mail,
   MessageCircle,
   NotebookPen,
