@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CareerRouteImport } from './routes/career'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PromptsRouteImport } from './routes/prompts'
 import { Route as ResponsibleAiRouteImport } from './routes/responsible-ai'
@@ -33,6 +34,11 @@ const AboutRoute = AboutRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareerRoute = CareerRouteImport.update({
+  id: '/career',
+  path: '/career',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/career': typeof CareerRoute
   '/library': typeof LibraryRoute
   '/prompts': typeof PromptsRoute
   '/responsible-ai': typeof ResponsibleAiRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/career': typeof CareerRoute
   '/library': typeof LibraryRoute
   '/prompts': typeof PromptsRoute
   '/responsible-ai': typeof ResponsibleAiRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/career': typeof CareerRoute
   '/library': typeof LibraryRoute
   '/prompts': typeof PromptsRoute
   '/responsible-ai': typeof ResponsibleAiRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/career'
     | '/library'
     | '/prompts'
     | '/responsible-ai'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/career'
     | '/library'
     | '/prompts'
     | '/responsible-ai'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/career'
     | '/library'
     | '/prompts'
     | '/responsible-ai'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
+  CareerRoute: typeof CareerRoute
   LibraryRoute: typeof LibraryRoute
   PromptsRoute: typeof PromptsRoute
   ResponsibleAiRoute: typeof ResponsibleAiRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/career': {
+      id: '/career'
+      path: '/career'
+      fullPath: '/career'
+      preLoaderRoute: typeof CareerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
+  CareerRoute: CareerRoute,
   LibraryRoute: LibraryRoute,
   PromptsRoute: PromptsRoute,
   ResponsibleAiRoute: ResponsibleAiRoute,
