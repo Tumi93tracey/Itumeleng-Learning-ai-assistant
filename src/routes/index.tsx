@@ -5,6 +5,7 @@ import {
   BookOpen,
   Calendar,
   Clock,
+  GraduationCap,
   Mail,
   MessageCircle,
   NotebookPen,
@@ -193,6 +194,29 @@ function Dashboard() {
               <CardContent className="mt-auto">
                 <Button asChild size="sm">
                   <Link to="/chat">Open chat</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="flex flex-col border-clay/40">
+              <CardHeader>
+                <div className="flex items-start gap-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-clay/20 text-clay">
+                    <GraduationCap className="size-5" />
+                  </span>
+                  <div>
+                    <CardTitle className="font-display text-base">
+                      Subject choice, APS & university matcher
+                    </CardTitle>
+                    <CardDescription>
+                      For learners and parents: choose Grade 10 subjects, count your APS score, and see the
+                      courses and universities you qualify for.
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button asChild size="sm">
+                  <Link to="/career">Start the self-assessment</Link>
                 </Button>
               </CardContent>
             </Card>
