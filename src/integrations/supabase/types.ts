@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      applications: {
+        Row: {
+          course: string
+          created_at: string
+          deadline: string | null
+          documents: Json
+          id: string
+          notes: string
+          requirements: string
+          status: string
+          university: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          course: string
+          created_at?: string
+          deadline?: string | null
+          documents?: Json
+          id?: string
+          notes?: string
+          requirements?: string
+          status?: string
+          university: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          course?: string
+          created_at?: string
+          deadline?: string | null
+          documents?: Json
+          id?: string
+          notes?: string
+          requirements?: string
+          status?: string
+          university?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       chat_messages: {
         Row: {
           chat_id: string
