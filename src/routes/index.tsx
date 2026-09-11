@@ -4,6 +4,8 @@ import {
   ArrowRight,
   BookOpen,
   Calendar,
+  CalendarRange,
+  ClipboardList,
   Clock,
   GraduationCap,
   Mail,
@@ -44,6 +46,7 @@ export const Route = createFileRoute("/")({
 
 const ICONS: Record<ToolId, React.ComponentType<{ className?: string }>> = {
   "lesson-plan": BookOpen,
+  "curriculum-planner": CalendarRange,
   "parent-message": Mail,
   summarizer: NotebookPen,
   "task-planner": Calendar,
