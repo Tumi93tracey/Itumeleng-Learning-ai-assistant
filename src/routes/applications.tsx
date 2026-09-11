@@ -364,7 +364,7 @@ function NewApplicationForm({
               placeholder="University of Johannesburg"
             />
             <datalist id="university-list">
-              {UNIVERSITIES.map((item) => (
+              {Object.values(UNIVERSITIES).map((item) => (
                 <option key={item.name} value={item.name} />
               ))}
             </datalist>
