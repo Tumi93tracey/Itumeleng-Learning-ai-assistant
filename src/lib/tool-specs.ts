@@ -20,6 +20,7 @@ export type ToolField = {
 
 export type ToolId =
   | "lesson-plan"
+  | "curriculum-planner"
   | "parent-message"
   | "summarizer"
   | "task-planner"
