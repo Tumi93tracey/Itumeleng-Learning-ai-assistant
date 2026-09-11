@@ -148,7 +148,7 @@ function Dashboard() {
         {/* Tools */}
         <section>
           <SectionTitle
-            title="Your five tools"
+            title="Your teaching tools"
             description="Each one is a guided form: role, audience, tone and output format are set for you, and you can read the exact prompt before it is sent."
           />
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -220,6 +220,29 @@ function Dashboard() {
               <CardContent className="mt-auto">
                 <Button asChild size="sm">
                   <Link to="/career">Start the self-assessment</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="flex flex-col border-clay/40">
+              <CardHeader>
+                <div className="flex items-start gap-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-clay/20 text-clay">
+                    <ClipboardList className="size-5" />
+                  </span>
+                  <div>
+                    <CardTitle className="font-display text-base">
+                      University application tracker
+                    </CardTitle>
+                    <CardDescription>
+                      Every course and university you are applying to, with the closing date and a tick-list of
+                      the certified documents you still need.
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button asChild size="sm">
+                  <Link to="/applications">Track my applications</Link>
                 </Button>
               </CardContent>
             </Card>
