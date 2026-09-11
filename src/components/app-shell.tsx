@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import {
   BookOpen,
   Calendar,
+  CalendarRange,
+  ClipboardList,
   GraduationCap,
   LayoutDashboard,
   Library,
@@ -34,11 +36,18 @@ const NAV: NavEntry[] = [
   { path: "/", label: "Dashboard", icon: LayoutDashboard },
   { path: "/chat", label: "Ask the assistant", icon: MessageCircle },
   { path: "/tools/lesson-plan", toolId: "lesson-plan", label: "Lesson plans", icon: BookOpen },
+  {
+    path: "/tools/curriculum-planner",
+    toolId: "curriculum-planner",
+    label: "CAPS curriculum planner",
+    icon: CalendarRange,
+  },
   { path: "/tools/parent-message", toolId: "parent-message", label: "Parent messages", icon: Mail },
   { path: "/tools/summarizer", toolId: "summarizer", label: "Meeting notes", icon: NotebookPen },
   { path: "/tools/task-planner", toolId: "task-planner", label: "Week planner", icon: Calendar },
   { path: "/tools/research", toolId: "research", label: "Research helper", icon: Search },
   { path: "/career", label: "Subjects, APS & varsity", icon: GraduationCap },
+  { path: "/applications", label: "Application tracker", icon: ClipboardList },
 ];
 
 const SECONDARY: NavEntry[] = [
