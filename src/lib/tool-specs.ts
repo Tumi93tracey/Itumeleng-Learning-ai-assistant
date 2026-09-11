@@ -20,6 +20,7 @@ export type ToolField = {
 
 export type ToolId =
   | "lesson-plan"
+  | "curriculum-planner"
   | "parent-message"
   | "summarizer"
   | "task-planner"
@@ -32,7 +33,7 @@ export type ToolSpec = {
   /** The real classroom problem this solves. */
   problem: string;
   saves: string;
-  icon: "book" | "mail" | "notes" | "calendar" | "search";
+  icon: "book" | "grid" | "mail" | "notes" | "calendar" | "search";
   /** The persona/role the AI is given. */
   role: string;
   /** How the model must format the answer. */
@@ -190,6 +191,224 @@ Tick per child: says /s/ correctly · names an /s/ word · traces *s* with corre
 
 ### Home extension
 "Tonight, find three things in your home that start with 'sss'. Bring one to school tomorrow."`,
+  },
+  {
+    id: "curriculum-planner",
+    name: "CAPS curriculum planner",
+    tagline:
+      "A full week (or term) of CAPS-aligned lessons, assessments and resources — ECD right through to Grade 12.",
+    problem:
+      "Weekly planning against the CAPS annual teaching plan means juggling the ATP, pacing, assessment dates and resource lists at once. Done by hand it eats a whole Sunday, and it has to happen every week of every term.",
+    saves: "≈2 hours per week of planning",
+    icon: "grid",
+    role:
+      "You are a South African curriculum specialist and phase head who writes CAPS-aligned weekly work schedules from ECD (birth to 4) and Grade R through to the Grade 12 NSC, following the annual teaching plan (ATP), correct pacing and school-based assessment requirements.",
+    outputFormat: [
+      "Header: phase, grade, subject, term and week span, plus total teaching time",
+      "A week-by-week overview table: week, topic/ATP focus, core concepts, assessment, resources",
+      "For each week, a day-by-day breakdown with lesson focus, activities and timing",
+      "Learning objectives per week, written as observable learner outcomes",
+      "Assessment plan: informal daily work plus one formal assessment per period, with the assessment form (baseline, practical, investigation, test, project, oral) and a simple marking guide or rubric criteria",
+      "Resource list separated into 'what you already have' and 'what you must still find or make'",
+      "Differentiation: support for learners behind, and extension for those ahead",
+      "Homework / consolidation and, for the early years, a home-partnership activity",
+      "A 'check against your current ATP' note listing which claims must be verified",
+    ],
+    fields: [
+      {
+        id: "phase",
+        label: "Phase",
+        type: "select",
+        options: [
+          "ECD (birth–4 years)",
+          "Grade R",
+          "Foundation Phase (Grade 1–3)",
+          "Intermediate Phase (Grade 4–6)",
+          "Senior Phase (Grade 7–9)",
+          "FET (Grade 10–12)",
+        ],
+        required: true,
+      },
+      {
+        id: "grade",
+        label: "Grade / age group",
+        type: "select",
+        options: [
+          "Babies & toddlers (0–2)",
+          "3–4 years",
+          "Grade R",
+          "Grade 1",
+          "Grade 2",
+          "Grade 3",
+          "Grade 4",
+          "Grade 5",
+          "Grade 6",
+          "Grade 7",
+          "Grade 8",
+          "Grade 9",
+          "Grade 10",
+          "Grade 11",
+          "Grade 12",
+        ],
+        required: true,
+      },
+      {
+        id: "subject",
+        label: "Subject / learning area",
+        type: "text",
+        placeholder: "Home Language · Mathematics · Natural Sciences · Life Skills · Physical Sciences",
+        required: true,
+      },
+      {
+        id: "term",
+        label: "Term",
+        type: "select",
+        options: ["Term 1", "Term 2", "Term 3", "Term 4"],
+        required: true,
+      },
+      {
+        id: "span",
+        label: "Plan for",
+        type: "select",
+        options: ["One week", "Two weeks", "Four weeks", "A full 10-week term"],
+        required: true,
+      },
+      {
+        id: "topic",
+        label: "Topic or ATP focus for this period",
+        type: "textarea",
+        rows: 2,
+        placeholder: "Fractions: equivalent fractions and comparing fractions / Poetry: figures of speech",
+        required: true,
+      },
+      {
+        id: "teachingTime",
+        label: "Teaching time available",
+        type: "text",
+        placeholder: "5 periods of 45 min per week / 90 min daily literacy ring",
+      },
+      {
+        id: "assessment",
+        label: "Formal assessment for this period",
+        type: "select",
+        options: [
+          "None yet — informal only",
+          "Baseline assessment",
+          "Class test",
+          "Investigation or project",
+          "Practical / experiment",
+          "Oral or presentation",
+          "Written task / essay",
+          "Observation checklist (early years)",
+        ],
+      },
+      {
+        id: "context",
+        label: "Class context",
+        type: "textarea",
+        rows: 2,
+        placeholder: "42 learners, township school, mixed ability, many second-language learners",
+      },
+      {
+        id: "resources",
+        label: "Resources you actually have",
+        type: "textarea",
+        rows: 2,
+        placeholder: "DBE workbooks, one textbook per two learners, chalkboard, no data projector",
+        help: "The plan will only build on what you list here.",
+      },
+      {
+        id: "support",
+        label: "Learners needing extra support or extension",
+        type: "textarea",
+        rows: 2,
+        placeholder: "Six learners reading two grades behind; three need harder work",
+        help: "Describe needs, not names.",
+        privacy: true,
+      },
+      {
+        id: "language",
+        label: "Language of learning and teaching",
+        type: "select",
+        options: [
+          "English",
+          "English with isiZulu support",
+          "English with Sesotho support",
+          "Afrikaans",
+          "isiZulu",
+          "Sesotho",
+        ],
+      },
+    ],
+    sample: {
+      phase: "Intermediate Phase (Grade 4–6)",
+      grade: "Grade 5",
+      subject: "Mathematics",
+      term: "Term 2",
+      span: "Two weeks",
+      topic: "Common fractions: equivalent fractions, comparing and ordering, adding fractions with the same denominator",
+      teachingTime: "6 periods of 45 minutes per week",
+      assessment: "Class test",
+      context: "42 learners, township school, wide ability spread, many second-language learners",
+      resources: "DBE workbooks, one textbook per two learners, chalkboard, fraction circles I cut from cardboard, no projector",
+      support: "Eight learners still shaky on times tables; four learners finish everything early",
+      language: "English with isiZulu support",
+    },
+    sampleOutput: `## Grade 5 Mathematics · Term 2 · Weeks 3–4
+**Phase:** Intermediate Phase · **Teaching time:** 6 × 45 min per week (12 periods) · **Topic:** Common fractions
+
+### Two-week overview
+| Week | ATP focus | Core concepts | Assessment | Key resources |
+| --- | --- | --- | --- | --- |
+| 3 | Common fractions: naming & equivalence | Halves to twelfths, equivalent fractions, fraction of a whole | Informal: daily class work + exit slips | Fraction circles, DBE workbook pp. 42–47, chalkboard |
+| 4 | Comparing, ordering & adding fractions | Comparing with the same and different denominators, ordering, adding same-denominator fractions | **Formal: class test (30 marks)** | Workbook pp. 48–53, number lines on the board, test paper |
+
+### Week 3 — naming and equivalence
+**Objectives.** By Friday each learner should be able to: name a fraction shown as a picture; write the fraction for a shaded part; give two equivalent fractions for ½, ⅓ and ¼; explain in their own words why 2/4 = 1/2.
+
+- **Monday (45 min)** — Fraction circles: learners build and name halves, quarters, eighths. 10 min mental starter on doubling; 25 min hands-on in pairs; 10 min recording in books.
+- **Tuesday** — From picture to symbol. Shade-and-write practice, workbook p. 42–43. Sentence frame on the board: "___ out of ___ equal parts, so ___."
+- **Wednesday** — Equivalent fractions with paper folding. Learners fold and shade to *discover* 1/2 = 2/4 = 4/8.
+- **Thursday** — Fraction of a whole (of a collection: 1/4 of 20 counters). Links to division — deliberate revision for the eight learners shaky on tables.
+- **Friday** — Consolidation + 5-question exit slip; mark together, note who needs Monday's support group.
+
+### Week 4 — comparing, ordering, adding
+**Objectives.** Compare two fractions and explain which is bigger; order four fractions smallest to largest; add fractions with the same denominator; solve two-step word problems with fractions.
+
+- **Monday** — Comparing with the same denominator using number lines drawn on the board.
+- **Tuesday** — Comparing with different denominators via equivalence (back to the folded strips).
+- **Wednesday** — Ordering four fractions; "human number line" activity in the aisle.
+- **Thursday** — Adding same-denominator fractions; word problems using shared bread and taxi fares.
+- **Friday** — **Class test (30 marks, 40 min)** then feedback in the last 5 min.
+
+### Assessment plan
+**Informal (daily).** Class work marked with learners, two exit slips (Week 3 Friday, Week 4 Wednesday), one mental-maths starter per lesson.
+
+**Formal — Week 4 class test, 30 marks**
+| Section | Content | Marks |
+| --- | --- | --- |
+| A | Name and write fractions from diagrams | 8 |
+| B | Equivalent fractions | 6 |
+| C | Compare and order | 8 |
+| D | Add same-denominator fractions | 4 |
+| E | Two word problems | 4 |
+
+Marking guide: award the method mark even when the final answer is wrong (1 method + 1 answer per multi-step item). Record against the CAPS Term 2 Mathematics assessment programme.
+
+### Resources
+**You already have:** DBE workbooks (pp. 42–53), shared textbooks, chalkboard, cardboard fraction circles, counters.
+**Still to make:** paper strips for folding (one A4 page cut into 6 strips per learner), a large board number line in chalk, the 30-mark test paper (one per learner — 42 copies).
+
+### Differentiation
+*Support (8 learners):* pre-teach the halving/doubling facts in Monday's first 10 minutes, allow fraction circles during written work, and reduce Week 4's word problems to one.
+*Extension (4 learners):* introduce adding tenths and hundredths, and ask them to write their own word problem for a classmate to solve.
+*Language:* keep the isiZulu word for "part/share" on the board alongside the English term, and insist on the full sentence frame so the vocabulary is practised aloud.
+
+### Homework
+Two short items per night from the workbook (never new content), and one weekend task: find three fractions used at home or in a shop and write them down.
+
+### Check against your current ATP
+Verify the week numbers and page references against **your school's current Grade 5 Mathematics ATP and DBE workbook edition**, confirm the Term 2 formal assessment type and mark allocation with your HOD, and check the test date against the school assessment calendar. Pacing here assumes 6 periods a week with no public holidays in that fortnight.`,
   },
   {
     id: "parent-message",

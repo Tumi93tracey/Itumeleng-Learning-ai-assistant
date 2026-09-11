@@ -6,7 +6,14 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { TOOL_BY_ID, buildPrompt, type ToolId } from "./tool-specs";
 
 const InputSchema = z.object({
-  toolId: z.enum(["lesson-plan", "parent-message", "summarizer", "task-planner", "research"]),
+  toolId: z.enum([
+    "lesson-plan",
+    "curriculum-planner",
+    "parent-message",
+    "summarizer",
+    "task-planner",
+    "research",
+  ]),
   values: z.record(z.string(), z.string()),
 });
 
