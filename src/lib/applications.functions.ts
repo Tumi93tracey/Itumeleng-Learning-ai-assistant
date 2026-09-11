@@ -93,7 +93,10 @@ export const updateApplication = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     const { id, ...patch } = data;
-    const { error } = await context.supabase.from("applications").update(patch).eq("id", id);
+    const { error } = await context.supabase
+      .from("applications")
+      .update(patch as Record<string, never>)
+      .eq("id", id);
     if (error) throw new Error(error.message);
     return { ok: true };
   });
